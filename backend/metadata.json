@@ -1,0 +1,2540 @@
+{
+  "text": " Python, a high-level, interpreted programming language famous for its zen-like code. It's arguably the most popular language in the world because it's easy to learn, yet practical for serious projects. In fact, you're watching this YouTube video in a Python web application right now. It was created by Kwiidovan Rossum and released in 1991, who named it after Monty Python's blind circus, which is why you'll sometimes find spam and eggs instead of food and bar in code samples. It's commonly used to build server-side applications, like web apps with the Django framework, and is the language of choice for big data analysis and machine learning. Many students choose Python to start learning to code because of its emphasis on readability as outlined by the zen of Python. Beautiful is better than ugly, while explicit is better than implicit. Python is very simple, but avoids the temptation to sprinkle in magic that causes ambiguity. Its code is often organized into notebooks, where individual cells can be executed, then documented in the same place. We're currently at version 3 of the language, and you can get started by creating a file that ends in .py, or .ipynb to create an interactive notebook. Create a variable by setting a name equal to a value. It's strongly typed, which means values won't change in unexpected ways, but dynamic, so type annotations are not required. The syntax is highly efficient, allowing you to declare multiple variables on a single line, and define two pulls, lists, and dictionaries with a literal syntax. Semicolons are not required, and if you use them and experience Pythonista, we'll say that your code is not Pythonic. Instead of Semicolons, Python uses indentation to terminate or determine the scope of a line of code. Define a function with a dev keyword, then indent the next line, usually by four spaces, to define the function body. We might then add a for loop to it and indent that by another four spaces. This eliminates the need for curly braces and Semicolons found in many other languages. Python is a multi-paradigm language. We can apply functional programming patterns with things like anonymous functions using Lambda. It also uses objects as an abstraction for data, allowing you to implement object-oriented patterns, with things like classes and inheritance. It also has a huge ecosystem of third-party libraries, such as deep learning frameworks like TensorFlow, and wrappers for many high-performance low-level packages like Open Computer Vision, which are most often installed with the PIP package manager. This has been the Python programming language in 100 seconds. Hit the like button if you want to see more short videos like this. Thanks for watching, and I will see you in the next one.",
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 5.14,
+      "text": "Python, a high-level, interpreted programming language famous for its zen-like code.",
+      "words": [
+        {
+          "word": "Python,",
+          "start": 0.0,
+          "end": 0.5
+        },
+        {
+          "word": "a",
+          "start": 0.94,
+          "end": 1.06
+        },
+        {
+          "word": "high",
+          "start": 1.06,
+          "end": 1.32
+        },
+        {
+          "word": "-level,",
+          "start": 1.32,
+          "end": 1.6
+        },
+        {
+          "word": "interpreted",
+          "start": 1.84,
+          "end": 2.2
+        },
+        {
+          "word": "programming",
+          "start": 2.2,
+          "end": 2.72
+        },
+        {
+          "word": "language",
+          "start": 2.72,
+          "end": 3.16
+        },
+        {
+          "word": "famous",
+          "start": 3.16,
+          "end": 3.64
+        },
+        {
+          "word": "for",
+          "start": 3.64,
+          "end": 3.98
+        },
+        {
+          "word": "its",
+          "start": 3.98,
+          "end": 4.26
+        },
+        {
+          "word": "zen",
+          "start": 4.26,
+          "end": 4.52
+        },
+        {
+          "word": "-like",
+          "start": 4.52,
+          "end": 4.76
+        },
+        {
+          "word": "code.",
+          "start": 4.76,
+          "end": 5.14
+        }
+      ]
+    },
+    {
+      "start": 5.32,
+      "end": 9.02,
+      "text": "It's arguably the most popular language in the world because it's easy to learn,",
+      "words": [
+        {
+          "word": "It's",
+          "start": 5.32,
+          "end": 5.48
+        },
+        {
+          "word": "arguably",
+          "start": 5.48,
+          "end": 5.8
+        },
+        {
+          "word": "the",
+          "start": 5.8,
+          "end": 6.1
+        },
+        {
+          "word": "most",
+          "start": 6.1,
+          "end": 6.28
+        },
+        {
+          "word": "popular",
+          "start": 6.28,
+          "end": 6.74
+        },
+        {
+          "word": "language",
+          "start": 6.74,
+          "end": 7.1
+        },
+        {
+          "word": "in",
+          "start": 7.1,
+          "end": 7.32
+        },
+        {
+          "word": "the",
+          "start": 7.32,
+          "end": 7.4
+        },
+        {
+          "word": "world",
+          "start": 7.4,
+          "end": 7.7
+        },
+        {
+          "word": "because",
+          "start": 7.7,
+          "end": 8.06
+        },
+        {
+          "word": "it's",
+          "start": 8.06,
+          "end": 8.3
+        },
+        {
+          "word": "easy",
+          "start": 8.3,
+          "end": 8.54
+        },
+        {
+          "word": "to",
+          "start": 8.54,
+          "end": 8.68
+        },
+        {
+          "word": "learn,",
+          "start": 8.68,
+          "end": 9.02
+        }
+      ]
+    },
+    {
+      "start": 9.2,
+      "end": 14.44,
+      "text": "yet practical for serious projects. In fact, you're watching this YouTube video in a Python web",
+      "words": [
+        {
+          "word": "yet",
+          "start": 9.2,
+          "end": 9.36
+        },
+        {
+          "word": "practical",
+          "start": 9.36,
+          "end": 9.88
+        },
+        {
+          "word": "for",
+          "start": 9.88,
+          "end": 10.22
+        },
+        {
+          "word": "serious",
+          "start": 10.22,
+          "end": 10.7
+        },
+        {
+          "word": "projects.",
+          "start": 10.7,
+          "end": 11.16
+        },
+        {
+          "word": "In",
+          "start": 11.48,
+          "end": 11.56
+        },
+        {
+          "word": "fact,",
+          "start": 11.56,
+          "end": 11.84
+        },
+        {
+          "word": "you're",
+          "start": 11.84,
+          "end": 12.2
+        },
+        {
+          "word": "watching",
+          "start": 12.2,
+          "end": 12.46
+        },
+        {
+          "word": "this",
+          "start": 12.46,
+          "end": 12.68
+        },
+        {
+          "word": "YouTube",
+          "start": 12.68,
+          "end": 12.96
+        },
+        {
+          "word": "video",
+          "start": 12.96,
+          "end": 13.36
+        },
+        {
+          "word": "in",
+          "start": 13.36,
+          "end": 13.66
+        },
+        {
+          "word": "a",
+          "start": 13.66,
+          "end": 13.76
+        },
+        {
+          "word": "Python",
+          "start": 13.76,
+          "end": 14.16
+        },
+        {
+          "word": "web",
+          "start": 14.16,
+          "end": 14.44
+        }
+      ]
+    },
+    {
+      "start": 14.44,
+      "end": 19.92,
+      "text": "application right now. It was created by Kwiidovan Rossum and released in 1991, who named it after",
+      "words": [
+        {
+          "word": "application",
+          "start": 14.44,
+          "end": 14.98
+        },
+        {
+          "word": "right",
+          "start": 14.98,
+          "end": 15.26
+        },
+        {
+          "word": "now.",
+          "start": 15.26,
+          "end": 15.52
+        },
+        {
+          "word": "It",
+          "start": 15.62,
+          "end": 15.68
+        },
+        {
+          "word": "was",
+          "start": 15.68,
+          "end": 15.78
+        },
+        {
+          "word": "created",
+          "start": 15.78,
+          "end": 16.1
+        },
+        {
+          "word": "by",
+          "start": 16.1,
+          "end": 16.3
+        },
+        {
+          "word": "Kwiidovan",
+          "start": 16.3,
+          "end": 16.84
+        },
+        {
+          "word": "Rossum",
+          "start": 16.84,
+          "end": 17.4
+        },
+        {
+          "word": "and",
+          "start": 17.4,
+          "end": 17.6
+        },
+        {
+          "word": "released",
+          "start": 17.6,
+          "end": 17.86
+        },
+        {
+          "word": "in",
+          "start": 17.86,
+          "end": 18.12
+        },
+        {
+          "word": "1991,",
+          "start": 18.12,
+          "end": 18.78
+        },
+        {
+          "word": "who",
+          "start": 19.12,
+          "end": 19.16
+        },
+        {
+          "word": "named",
+          "start": 19.16,
+          "end": 19.36
+        },
+        {
+          "word": "it",
+          "start": 19.36,
+          "end": 19.58
+        },
+        {
+          "word": "after",
+          "start": 19.58,
+          "end": 19.92
+        }
+      ]
+    },
+    {
+      "start": 19.92,
+      "end": 25.08,
+      "text": "Monty Python's blind circus, which is why you'll sometimes find spam and eggs instead of food and bar",
+      "words": [
+        {
+          "word": "Monty",
+          "start": 19.92,
+          "end": 20.3
+        },
+        {
+          "word": "Python's",
+          "start": 20.3,
+          "end": 20.94
+        },
+        {
+          "word": "blind",
+          "start": 20.94,
+          "end": 21.12
+        },
+        {
+          "word": "circus,",
+          "start": 21.12,
+          "end": 21.5
+        },
+        {
+          "word": "which",
+          "start": 21.84,
+          "end": 21.98
+        },
+        {
+          "word": "is",
+          "start": 21.98,
+          "end": 22.1
+        },
+        {
+          "word": "why",
+          "start": 22.1,
+          "end": 22.28
+        },
+        {
+          "word": "you'll",
+          "start": 22.28,
+          "end": 22.42
+        },
+        {
+          "word": "sometimes",
+          "start": 22.42,
+          "end": 22.72
+        },
+        {
+          "word": "find",
+          "start": 22.72,
+          "end": 23.14
+        },
+        {
+          "word": "spam",
+          "start": 23.14,
+          "end": 23.4
+        },
+        {
+          "word": "and",
+          "start": 23.4,
+          "end": 23.62
+        },
+        {
+          "word": "eggs",
+          "start": 23.62,
+          "end": 23.86
+        },
+        {
+          "word": "instead",
+          "start": 23.86,
+          "end": 24.3
+        },
+        {
+          "word": "of",
+          "start": 24.3,
+          "end": 24.52
+        },
+        {
+          "word": "food",
+          "start": 24.52,
+          "end": 24.66
+        },
+        {
+          "word": "and",
+          "start": 24.66,
+          "end": 24.86
+        },
+        {
+          "word": "bar",
+          "start": 24.86,
+          "end": 25.08
+        }
+      ]
+    },
+    {
+      "start": 25.08,
+      "end": 29.86,
+      "text": "in code samples. It's commonly used to build server-side applications, like web apps with the",
+      "words": [
+        {
+          "word": "in",
+          "start": 25.08,
+          "end": 25.4
+        },
+        {
+          "word": "code",
+          "start": 25.4,
+          "end": 25.66
+        },
+        {
+          "word": "samples.",
+          "start": 25.66,
+          "end": 26.06
+        },
+        {
+          "word": "It's",
+          "start": 26.38,
+          "end": 26.5
+        },
+        {
+          "word": "commonly",
+          "start": 26.5,
+          "end": 26.76
+        },
+        {
+          "word": "used",
+          "start": 26.76,
+          "end": 27.2
+        },
+        {
+          "word": "to",
+          "start": 27.2,
+          "end": 27.32
+        },
+        {
+          "word": "build",
+          "start": 27.32,
+          "end": 27.46
+        },
+        {
+          "word": "server",
+          "start": 27.46,
+          "end": 27.76
+        },
+        {
+          "word": "-side",
+          "start": 27.76,
+          "end": 27.98
+        },
+        {
+          "word": "applications,",
+          "start": 27.98,
+          "end": 28.52
+        },
+        {
+          "word": "like",
+          "start": 28.86,
+          "end": 28.98
+        },
+        {
+          "word": "web",
+          "start": 28.98,
+          "end": 29.24
+        },
+        {
+          "word": "apps",
+          "start": 29.24,
+          "end": 29.48
+        },
+        {
+          "word": "with",
+          "start": 29.48,
+          "end": 29.72
+        },
+        {
+          "word": "the",
+          "start": 29.72,
+          "end": 29.86
+        }
+      ]
+    },
+    {
+      "start": 29.86,
+      "end": 34.28,
+      "text": "Django framework, and is the language of choice for big data analysis and machine learning.",
+      "words": [
+        {
+          "word": "Django",
+          "start": 29.86,
+          "end": 30.22
+        },
+        {
+          "word": "framework,",
+          "start": 30.22,
+          "end": 30.54
+        },
+        {
+          "word": "and",
+          "start": 30.84,
+          "end": 30.94
+        },
+        {
+          "word": "is",
+          "start": 30.94,
+          "end": 31.08
+        },
+        {
+          "word": "the",
+          "start": 31.08,
+          "end": 31.18
+        },
+        {
+          "word": "language",
+          "start": 31.18,
+          "end": 31.4
+        },
+        {
+          "word": "of",
+          "start": 31.4,
+          "end": 31.58
+        },
+        {
+          "word": "choice",
+          "start": 31.58,
+          "end": 31.88
+        },
+        {
+          "word": "for",
+          "start": 31.88,
+          "end": 32.18
+        },
+        {
+          "word": "big",
+          "start": 32.18,
+          "end": 32.42
+        },
+        {
+          "word": "data",
+          "start": 32.42,
+          "end": 32.72
+        },
+        {
+          "word": "analysis",
+          "start": 32.72,
+          "end": 33.24
+        },
+        {
+          "word": "and",
+          "start": 33.24,
+          "end": 33.66
+        },
+        {
+          "word": "machine",
+          "start": 33.66,
+          "end": 33.92
+        },
+        {
+          "word": "learning.",
+          "start": 33.92,
+          "end": 34.28
+        }
+      ]
+    },
+    {
+      "start": 34.56,
+      "end": 38.86,
+      "text": "Many students choose Python to start learning to code because of its emphasis on readability",
+      "words": [
+        {
+          "word": "Many",
+          "start": 34.56,
+          "end": 34.72
+        },
+        {
+          "word": "students",
+          "start": 34.72,
+          "end": 35.12
+        },
+        {
+          "word": "choose",
+          "start": 35.12,
+          "end": 35.44
+        },
+        {
+          "word": "Python",
+          "start": 35.44,
+          "end": 35.74
+        },
+        {
+          "word": "to",
+          "start": 35.74,
+          "end": 36.06
+        },
+        {
+          "word": "start",
+          "start": 36.06,
+          "end": 36.32
+        },
+        {
+          "word": "learning",
+          "start": 36.32,
+          "end": 36.64
+        },
+        {
+          "word": "to",
+          "start": 36.64,
+          "end": 36.78
+        },
+        {
+          "word": "code",
+          "start": 36.78,
+          "end": 37.0
+        },
+        {
+          "word": "because",
+          "start": 37.0,
+          "end": 37.32
+        },
+        {
+          "word": "of",
+          "start": 37.32,
+          "end": 37.46
+        },
+        {
+          "word": "its",
+          "start": 37.46,
+          "end": 37.6
+        },
+        {
+          "word": "emphasis",
+          "start": 37.6,
+          "end": 37.96
+        },
+        {
+          "word": "on",
+          "start": 37.96,
+          "end": 38.32
+        },
+        {
+          "word": "readability",
+          "start": 38.32,
+          "end": 38.86
+        }
+      ]
+    },
+    {
+      "start": 38.86,
+      "end": 44.3,
+      "text": "as outlined by the zen of Python. Beautiful is better than ugly, while explicit is better than",
+      "words": [
+        {
+          "word": "as",
+          "start": 38.86,
+          "end": 39.3
+        },
+        {
+          "word": "outlined",
+          "start": 39.3,
+          "end": 39.76
+        },
+        {
+          "word": "by",
+          "start": 39.76,
+          "end": 40.04
+        },
+        {
+          "word": "the",
+          "start": 40.04,
+          "end": 40.2
+        },
+        {
+          "word": "zen",
+          "start": 40.2,
+          "end": 40.48
+        },
+        {
+          "word": "of",
+          "start": 40.48,
+          "end": 40.64
+        },
+        {
+          "word": "Python.",
+          "start": 40.64,
+          "end": 40.94
+        },
+        {
+          "word": "Beautiful",
+          "start": 41.3,
+          "end": 41.52
+        },
+        {
+          "word": "is",
+          "start": 41.52,
+          "end": 41.82
+        },
+        {
+          "word": "better",
+          "start": 41.82,
+          "end": 42.0
+        },
+        {
+          "word": "than",
+          "start": 42.0,
+          "end": 42.2
+        },
+        {
+          "word": "ugly,",
+          "start": 42.2,
+          "end": 42.48
+        },
+        {
+          "word": "while",
+          "start": 42.76,
+          "end": 42.92
+        },
+        {
+          "word": "explicit",
+          "start": 42.92,
+          "end": 43.42
+        },
+        {
+          "word": "is",
+          "start": 43.42,
+          "end": 43.84
+        },
+        {
+          "word": "better",
+          "start": 43.84,
+          "end": 44.1
+        },
+        {
+          "word": "than",
+          "start": 44.1,
+          "end": 44.3
+        }
+      ]
+    },
+    {
+      "start": 44.3,
+      "end": 49.58,
+      "text": "implicit. Python is very simple, but avoids the temptation to sprinkle in magic that causes ambiguity.",
+      "words": [
+        {
+          "word": "implicit.",
+          "start": 44.3,
+          "end": 44.72
+        },
+        {
+          "word": "Python",
+          "start": 45.02,
+          "end": 45.22
+        },
+        {
+          "word": "is",
+          "start": 45.22,
+          "end": 45.44
+        },
+        {
+          "word": "very",
+          "start": 45.44,
+          "end": 45.62
+        },
+        {
+          "word": "simple,",
+          "start": 45.62,
+          "end": 45.96
+        },
+        {
+          "word": "but",
+          "start": 46.26,
+          "end": 46.34
+        },
+        {
+          "word": "avoids",
+          "start": 46.34,
+          "end": 46.62
+        },
+        {
+          "word": "the",
+          "start": 46.62,
+          "end": 46.74
+        },
+        {
+          "word": "temptation",
+          "start": 46.74,
+          "end": 47.18
+        },
+        {
+          "word": "to",
+          "start": 47.18,
+          "end": 47.5
+        },
+        {
+          "word": "sprinkle",
+          "start": 47.5,
+          "end": 47.84
+        },
+        {
+          "word": "in",
+          "start": 47.84,
+          "end": 48.0
+        },
+        {
+          "word": "magic",
+          "start": 48.0,
+          "end": 48.36
+        },
+        {
+          "word": "that",
+          "start": 48.36,
+          "end": 48.66
+        },
+        {
+          "word": "causes",
+          "start": 48.66,
+          "end": 49.06
+        },
+        {
+          "word": "ambiguity.",
+          "start": 49.06,
+          "end": 49.58
+        }
+      ]
+    },
+    {
+      "start": 49.58,
+      "end": 54.18,
+      "text": "Its code is often organized into notebooks, where individual cells can be executed,",
+      "words": [
+        {
+          "word": "Its",
+          "start": 49.58,
+          "end": 50.14
+        },
+        {
+          "word": "code",
+          "start": 50.14,
+          "end": 50.36
+        },
+        {
+          "word": "is",
+          "start": 50.36,
+          "end": 50.54
+        },
+        {
+          "word": "often",
+          "start": 50.54,
+          "end": 50.86
+        },
+        {
+          "word": "organized",
+          "start": 50.86,
+          "end": 51.3
+        },
+        {
+          "word": "into",
+          "start": 51.3,
+          "end": 51.74
+        },
+        {
+          "word": "notebooks,",
+          "start": 51.74,
+          "end": 52.14
+        },
+        {
+          "word": "where",
+          "start": 52.5,
+          "end": 52.56
+        },
+        {
+          "word": "individual",
+          "start": 52.56,
+          "end": 53.0
+        },
+        {
+          "word": "cells",
+          "start": 53.0,
+          "end": 53.32
+        },
+        {
+          "word": "can",
+          "start": 53.32,
+          "end": 53.54
+        },
+        {
+          "word": "be",
+          "start": 53.54,
+          "end": 53.68
+        },
+        {
+          "word": "executed,",
+          "start": 53.68,
+          "end": 54.18
+        }
+      ]
+    },
+    {
+      "start": 54.5,
+      "end": 58.02,
+      "text": "then documented in the same place. We're currently at version 3 of the language,",
+      "words": [
+        {
+          "word": "then",
+          "start": 54.5,
+          "end": 54.62
+        },
+        {
+          "word": "documented",
+          "start": 54.62,
+          "end": 55.18
+        },
+        {
+          "word": "in",
+          "start": 55.18,
+          "end": 55.48
+        },
+        {
+          "word": "the",
+          "start": 55.48,
+          "end": 55.62
+        },
+        {
+          "word": "same",
+          "start": 55.62,
+          "end": 55.82
+        },
+        {
+          "word": "place.",
+          "start": 55.82,
+          "end": 56.18
+        },
+        {
+          "word": "We're",
+          "start": 56.46,
+          "end": 56.56
+        },
+        {
+          "word": "currently",
+          "start": 56.56,
+          "end": 56.8
+        },
+        {
+          "word": "at",
+          "start": 56.8,
+          "end": 57.04
+        },
+        {
+          "word": "version",
+          "start": 57.04,
+          "end": 57.3
+        },
+        {
+          "word": "3",
+          "start": 57.3,
+          "end": 57.54
+        },
+        {
+          "word": "of",
+          "start": 57.54,
+          "end": 57.7
+        },
+        {
+          "word": "the",
+          "start": 57.7,
+          "end": 57.74
+        },
+        {
+          "word": "language,",
+          "start": 57.74,
+          "end": 58.02
+        }
+      ]
+    },
+    {
+      "start": 58.36,
+      "end": 63.64,
+      "text": "and you can get started by creating a file that ends in .py, or .ipynb to create an",
+      "words": [
+        {
+          "word": "and",
+          "start": 58.36,
+          "end": 58.48
+        },
+        {
+          "word": "you",
+          "start": 58.48,
+          "end": 58.58
+        },
+        {
+          "word": "can",
+          "start": 58.58,
+          "end": 58.7
+        },
+        {
+          "word": "get",
+          "start": 58.7,
+          "end": 58.8
+        },
+        {
+          "word": "started",
+          "start": 58.8,
+          "end": 59.14
+        },
+        {
+          "word": "by",
+          "start": 59.14,
+          "end": 59.38
+        },
+        {
+          "word": "creating",
+          "start": 59.38,
+          "end": 59.66
+        },
+        {
+          "word": "a",
+          "start": 59.66,
+          "end": 59.88
+        },
+        {
+          "word": "file",
+          "start": 59.88,
+          "end": 60.16
+        },
+        {
+          "word": "that",
+          "start": 60.16,
+          "end": 60.38
+        },
+        {
+          "word": "ends",
+          "start": 60.38,
+          "end": 60.64
+        },
+        {
+          "word": "in",
+          "start": 60.64,
+          "end": 60.8
+        },
+        {
+          "word": ".py,",
+          "start": 60.8,
+          "end": 61.36
+        },
+        {
+          "word": "or",
+          "start": 61.66,
+          "end": 61.76
+        },
+        {
+          "word": ".ipynb",
+          "start": 61.76,
+          "end": 62.88
+        },
+        {
+          "word": "to",
+          "start": 62.88,
+          "end": 63.2
+        },
+        {
+          "word": "create",
+          "start": 63.2,
+          "end": 63.48
+        },
+        {
+          "word": "an",
+          "start": 63.48,
+          "end": 63.64
+        }
+      ]
+    },
+    {
+      "start": 63.64,
+      "end": 68.66,
+      "text": "interactive notebook. Create a variable by setting a name equal to a value. It's strongly typed,",
+      "words": [
+        {
+          "word": "interactive",
+          "start": 63.64,
+          "end": 64.08
+        },
+        {
+          "word": "notebook.",
+          "start": 64.08,
+          "end": 64.4
+        },
+        {
+          "word": "Create",
+          "start": 64.76,
+          "end": 64.92
+        },
+        {
+          "word": "a",
+          "start": 64.92,
+          "end": 65.04
+        },
+        {
+          "word": "variable",
+          "start": 65.04,
+          "end": 65.4
+        },
+        {
+          "word": "by",
+          "start": 65.4,
+          "end": 65.72
+        },
+        {
+          "word": "setting",
+          "start": 65.72,
+          "end": 65.98
+        },
+        {
+          "word": "a",
+          "start": 65.98,
+          "end": 66.24
+        },
+        {
+          "word": "name",
+          "start": 66.24,
+          "end": 66.58
+        },
+        {
+          "word": "equal",
+          "start": 66.58,
+          "end": 66.98
+        },
+        {
+          "word": "to",
+          "start": 66.98,
+          "end": 67.18
+        },
+        {
+          "word": "a",
+          "start": 67.18,
+          "end": 67.3
+        },
+        {
+          "word": "value.",
+          "start": 67.3,
+          "end": 67.66
+        },
+        {
+          "word": "It's",
+          "start": 67.84,
+          "end": 68.0
+        },
+        {
+          "word": "strongly",
+          "start": 68.0,
+          "end": 68.3
+        },
+        {
+          "word": "typed,",
+          "start": 68.3,
+          "end": 68.66
+        }
+      ]
+    },
+    {
+      "start": 68.8,
+      "end": 73.24,
+      "text": "which means values won't change in unexpected ways, but dynamic, so type annotations are not",
+      "words": [
+        {
+          "word": "which",
+          "start": 68.8,
+          "end": 68.92
+        },
+        {
+          "word": "means",
+          "start": 68.92,
+          "end": 69.08
+        },
+        {
+          "word": "values",
+          "start": 69.08,
+          "end": 69.44
+        },
+        {
+          "word": "won't",
+          "start": 69.44,
+          "end": 69.68
+        },
+        {
+          "word": "change",
+          "start": 69.68,
+          "end": 69.9
+        },
+        {
+          "word": "in",
+          "start": 69.9,
+          "end": 70.08
+        },
+        {
+          "word": "unexpected",
+          "start": 70.08,
+          "end": 70.32
+        },
+        {
+          "word": "ways,",
+          "start": 70.32,
+          "end": 70.9
+        },
+        {
+          "word": "but",
+          "start": 71.22,
+          "end": 71.32
+        },
+        {
+          "word": "dynamic,",
+          "start": 71.32,
+          "end": 71.78
+        },
+        {
+          "word": "so",
+          "start": 72.04,
+          "end": 72.14
+        },
+        {
+          "word": "type",
+          "start": 72.14,
+          "end": 72.42
+        },
+        {
+          "word": "annotations",
+          "start": 72.42,
+          "end": 72.98
+        },
+        {
+          "word": "are",
+          "start": 72.98,
+          "end": 73.14
+        },
+        {
+          "word": "not",
+          "start": 73.14,
+          "end": 73.24
+        }
+      ]
+    },
+    {
+      "start": 73.24,
+      "end": 78.1,
+      "text": "required. The syntax is highly efficient, allowing you to declare multiple variables on a single line,",
+      "words": [
+        {
+          "word": "required.",
+          "start": 73.24,
+          "end": 73.68
+        },
+        {
+          "word": "The",
+          "start": 73.88,
+          "end": 73.96
+        },
+        {
+          "word": "syntax",
+          "start": 73.96,
+          "end": 74.24
+        },
+        {
+          "word": "is",
+          "start": 74.24,
+          "end": 74.54
+        },
+        {
+          "word": "highly",
+          "start": 74.54,
+          "end": 74.78
+        },
+        {
+          "word": "efficient,",
+          "start": 74.78,
+          "end": 75.22
+        },
+        {
+          "word": "allowing",
+          "start": 75.54,
+          "end": 75.82
+        },
+        {
+          "word": "you",
+          "start": 75.82,
+          "end": 76.04
+        },
+        {
+          "word": "to",
+          "start": 76.04,
+          "end": 76.16
+        },
+        {
+          "word": "declare",
+          "start": 76.16,
+          "end": 76.46
+        },
+        {
+          "word": "multiple",
+          "start": 76.46,
+          "end": 76.76
+        },
+        {
+          "word": "variables",
+          "start": 76.76,
+          "end": 77.2
+        },
+        {
+          "word": "on",
+          "start": 77.2,
+          "end": 77.42
+        },
+        {
+          "word": "a",
+          "start": 77.42,
+          "end": 77.52
+        },
+        {
+          "word": "single",
+          "start": 77.52,
+          "end": 77.74
+        },
+        {
+          "word": "line,",
+          "start": 77.74,
+          "end": 78.1
+        }
+      ]
+    },
+    {
+      "start": 78.1,
+      "end": 81.78,
+      "text": "and define two pulls, lists, and dictionaries with a literal syntax.",
+      "words": [
+        {
+          "word": "and",
+          "start": 78.1,
+          "end": 78.36
+        },
+        {
+          "word": "define",
+          "start": 78.36,
+          "end": 78.64
+        },
+        {
+          "word": "two",
+          "start": 78.64,
+          "end": 78.94
+        },
+        {
+          "word": "pulls,",
+          "start": 78.94,
+          "end": 79.22
+        },
+        {
+          "word": "lists,",
+          "start": 79.44,
+          "end": 79.6
+        },
+        {
+          "word": "and",
+          "start": 79.88,
+          "end": 79.98
+        },
+        {
+          "word": "dictionaries",
+          "start": 79.98,
+          "end": 80.54
+        },
+        {
+          "word": "with",
+          "start": 80.54,
+          "end": 80.9
+        },
+        {
+          "word": "a",
+          "start": 80.9,
+          "end": 81.04
+        },
+        {
+          "word": "literal",
+          "start": 81.04,
+          "end": 81.36
+        },
+        {
+          "word": "syntax.",
+          "start": 81.36,
+          "end": 81.78
+        }
+      ]
+    },
+    {
+      "start": 82.16,
+      "end": 85.74,
+      "text": "Semicolons are not required, and if you use them and experience Pythonista,",
+      "words": [
+        {
+          "word": "Semicolons",
+          "start": 82.16,
+          "end": 82.64
+        },
+        {
+          "word": "are",
+          "start": 82.64,
+          "end": 82.74
+        },
+        {
+          "word": "not",
+          "start": 82.74,
+          "end": 82.84
+        },
+        {
+          "word": "required,",
+          "start": 82.84,
+          "end": 83.3
+        },
+        {
+          "word": "and",
+          "start": 83.58,
+          "end": 83.64
+        },
+        {
+          "word": "if",
+          "start": 83.64,
+          "end": 83.76
+        },
+        {
+          "word": "you",
+          "start": 83.76,
+          "end": 83.84
+        },
+        {
+          "word": "use",
+          "start": 83.84,
+          "end": 84.06
+        },
+        {
+          "word": "them",
+          "start": 84.06,
+          "end": 84.24
+        },
+        {
+          "word": "and",
+          "start": 84.24,
+          "end": 84.52
+        },
+        {
+          "word": "experience",
+          "start": 84.52,
+          "end": 85.0
+        },
+        {
+          "word": "Pythonista,",
+          "start": 85.0,
+          "end": 85.74
+        }
+      ]
+    },
+    {
+      "start": 85.98,
+      "end": 91.04,
+      "text": "we'll say that your code is not Pythonic. Instead of Semicolons, Python uses indentation to",
+      "words": [
+        {
+          "word": "we'll",
+          "start": 85.98,
+          "end": 86.06
+        },
+        {
+          "word": "say",
+          "start": 86.06,
+          "end": 86.24
+        },
+        {
+          "word": "that",
+          "start": 86.24,
+          "end": 86.4
+        },
+        {
+          "word": "your",
+          "start": 86.4,
+          "end": 86.52
+        },
+        {
+          "word": "code",
+          "start": 86.52,
+          "end": 86.84
+        },
+        {
+          "word": "is",
+          "start": 86.84,
+          "end": 87.0
+        },
+        {
+          "word": "not",
+          "start": 87.0,
+          "end": 87.16
+        },
+        {
+          "word": "Pythonic.",
+          "start": 87.16,
+          "end": 87.78
+        },
+        {
+          "word": "Instead",
+          "start": 87.92,
+          "end": 88.14
+        },
+        {
+          "word": "of",
+          "start": 88.14,
+          "end": 88.4
+        },
+        {
+          "word": "Semicolons,",
+          "start": 88.4,
+          "end": 89.02
+        },
+        {
+          "word": "Python",
+          "start": 89.22,
+          "end": 89.34
+        },
+        {
+          "word": "uses",
+          "start": 89.34,
+          "end": 89.86
+        },
+        {
+          "word": "indentation",
+          "start": 89.86,
+          "end": 90.74
+        },
+        {
+          "word": "to",
+          "start": 90.74,
+          "end": 91.04
+        }
+      ]
+    },
+    {
+      "start": 91.04,
+      "end": 95.26,
+      "text": "terminate or determine the scope of a line of code. Define a function with a dev keyword,",
+      "words": [
+        {
+          "word": "terminate",
+          "start": 91.04,
+          "end": 91.6
+        },
+        {
+          "word": "or",
+          "start": 91.6,
+          "end": 91.8
+        },
+        {
+          "word": "determine",
+          "start": 91.8,
+          "end": 92.1
+        },
+        {
+          "word": "the",
+          "start": 92.1,
+          "end": 92.32
+        },
+        {
+          "word": "scope",
+          "start": 92.32,
+          "end": 92.6
+        },
+        {
+          "word": "of",
+          "start": 92.6,
+          "end": 92.78
+        },
+        {
+          "word": "a",
+          "start": 92.78,
+          "end": 92.86
+        },
+        {
+          "word": "line",
+          "start": 92.86,
+          "end": 93.08
+        },
+        {
+          "word": "of",
+          "start": 93.08,
+          "end": 93.2
+        },
+        {
+          "word": "code.",
+          "start": 93.2,
+          "end": 93.46
+        },
+        {
+          "word": "Define",
+          "start": 93.68,
+          "end": 93.94
+        },
+        {
+          "word": "a",
+          "start": 93.94,
+          "end": 94.04
+        },
+        {
+          "word": "function",
+          "start": 94.04,
+          "end": 94.34
+        },
+        {
+          "word": "with",
+          "start": 94.34,
+          "end": 94.64
+        },
+        {
+          "word": "a",
+          "start": 94.64,
+          "end": 94.74
+        },
+        {
+          "word": "dev",
+          "start": 94.74,
+          "end": 94.9
+        },
+        {
+          "word": "keyword,",
+          "start": 94.9,
+          "end": 95.26
+        }
+      ]
+    },
+    {
+      "start": 95.54,
+      "end": 100.42,
+      "text": "then indent the next line, usually by four spaces, to define the function body. We might then add a",
+      "words": [
+        {
+          "word": "then",
+          "start": 95.54,
+          "end": 95.66
+        },
+        {
+          "word": "indent",
+          "start": 95.66,
+          "end": 95.98
+        },
+        {
+          "word": "the",
+          "start": 95.98,
+          "end": 96.16
+        },
+        {
+          "word": "next",
+          "start": 96.16,
+          "end": 96.38
+        },
+        {
+          "word": "line,",
+          "start": 96.38,
+          "end": 96.68
+        },
+        {
+          "word": "usually",
+          "start": 96.88,
+          "end": 97.08
+        },
+        {
+          "word": "by",
+          "start": 97.08,
+          "end": 97.32
+        },
+        {
+          "word": "four",
+          "start": 97.32,
+          "end": 97.56
+        },
+        {
+          "word": "spaces,",
+          "start": 97.56,
+          "end": 97.94
+        },
+        {
+          "word": "to",
+          "start": 98.28,
+          "end": 98.4
+        },
+        {
+          "word": "define",
+          "start": 98.4,
+          "end": 98.68
+        },
+        {
+          "word": "the",
+          "start": 98.68,
+          "end": 98.82
+        },
+        {
+          "word": "function",
+          "start": 98.82,
+          "end": 99.1
+        },
+        {
+          "word": "body.",
+          "start": 99.1,
+          "end": 99.42
+        },
+        {
+          "word": "We",
+          "start": 99.64,
+          "end": 99.74
+        },
+        {
+          "word": "might",
+          "start": 99.74,
+          "end": 99.88
+        },
+        {
+          "word": "then",
+          "start": 99.88,
+          "end": 100.1
+        },
+        {
+          "word": "add",
+          "start": 100.1,
+          "end": 100.28
+        },
+        {
+          "word": "a",
+          "start": 100.28,
+          "end": 100.42
+        }
+      ]
+    },
+    {
+      "start": 100.42,
+      "end": 105.16,
+      "text": "for loop to it and indent that by another four spaces. This eliminates the need for curly braces",
+      "words": [
+        {
+          "word": "for",
+          "start": 100.42,
+          "end": 100.58
+        },
+        {
+          "word": "loop",
+          "start": 100.58,
+          "end": 100.74
+        },
+        {
+          "word": "to",
+          "start": 100.74,
+          "end": 100.94
+        },
+        {
+          "word": "it",
+          "start": 100.94,
+          "end": 101.1
+        },
+        {
+          "word": "and",
+          "start": 101.1,
+          "end": 101.24
+        },
+        {
+          "word": "indent",
+          "start": 101.24,
+          "end": 101.46
+        },
+        {
+          "word": "that",
+          "start": 101.46,
+          "end": 101.78
+        },
+        {
+          "word": "by",
+          "start": 101.78,
+          "end": 102.0
+        },
+        {
+          "word": "another",
+          "start": 102.0,
+          "end": 102.28
+        },
+        {
+          "word": "four",
+          "start": 102.28,
+          "end": 102.56
+        },
+        {
+          "word": "spaces.",
+          "start": 102.56,
+          "end": 102.94
+        },
+        {
+          "word": "This",
+          "start": 103.3,
+          "end": 103.54
+        },
+        {
+          "word": "eliminates",
+          "start": 103.54,
+          "end": 103.88
+        },
+        {
+          "word": "the",
+          "start": 103.88,
+          "end": 104.12
+        },
+        {
+          "word": "need",
+          "start": 104.12,
+          "end": 104.24
+        },
+        {
+          "word": "for",
+          "start": 104.24,
+          "end": 104.48
+        },
+        {
+          "word": "curly",
+          "start": 104.48,
+          "end": 104.8
+        },
+        {
+          "word": "braces",
+          "start": 104.8,
+          "end": 105.16
+        }
+      ]
+    },
+    {
+      "start": 105.16,
+      "end": 110.14,
+      "text": "and Semicolons found in many other languages. Python is a multi-paradigm language. We can apply",
+      "words": [
+        {
+          "word": "and",
+          "start": 105.16,
+          "end": 105.48
+        },
+        {
+          "word": "Semicolons",
+          "start": 105.48,
+          "end": 106.2
+        },
+        {
+          "word": "found",
+          "start": 106.2,
+          "end": 106.42
+        },
+        {
+          "word": "in",
+          "start": 106.42,
+          "end": 106.68
+        },
+        {
+          "word": "many",
+          "start": 106.68,
+          "end": 106.9
+        },
+        {
+          "word": "other",
+          "start": 106.9,
+          "end": 107.14
+        },
+        {
+          "word": "languages.",
+          "start": 107.14,
+          "end": 107.56
+        },
+        {
+          "word": "Python",
+          "start": 107.82,
+          "end": 107.94
+        },
+        {
+          "word": "is",
+          "start": 107.94,
+          "end": 108.28
+        },
+        {
+          "word": "a",
+          "start": 108.28,
+          "end": 108.4
+        },
+        {
+          "word": "multi",
+          "start": 108.4,
+          "end": 108.66
+        },
+        {
+          "word": "-paradigm",
+          "start": 108.66,
+          "end": 109.14
+        },
+        {
+          "word": "language.",
+          "start": 109.14,
+          "end": 109.48
+        },
+        {
+          "word": "We",
+          "start": 109.74,
+          "end": 109.8
+        },
+        {
+          "word": "can",
+          "start": 109.8,
+          "end": 109.92
+        },
+        {
+          "word": "apply",
+          "start": 109.92,
+          "end": 110.14
+        }
+      ]
+    },
+    {
+      "start": 110.14,
+      "end": 114.58,
+      "text": "functional programming patterns with things like anonymous functions using Lambda. It also uses",
+      "words": [
+        {
+          "word": "functional",
+          "start": 110.14,
+          "end": 110.52
+        },
+        {
+          "word": "programming",
+          "start": 110.52,
+          "end": 110.9
+        },
+        {
+          "word": "patterns",
+          "start": 110.9,
+          "end": 111.3
+        },
+        {
+          "word": "with",
+          "start": 111.3,
+          "end": 111.68
+        },
+        {
+          "word": "things",
+          "start": 111.68,
+          "end": 111.9
+        },
+        {
+          "word": "like",
+          "start": 111.9,
+          "end": 112.1
+        },
+        {
+          "word": "anonymous",
+          "start": 112.1,
+          "end": 112.48
+        },
+        {
+          "word": "functions",
+          "start": 112.48,
+          "end": 112.98
+        },
+        {
+          "word": "using",
+          "start": 112.98,
+          "end": 113.34
+        },
+        {
+          "word": "Lambda.",
+          "start": 113.34,
+          "end": 113.62
+        },
+        {
+          "word": "It",
+          "start": 113.98,
+          "end": 114.06
+        },
+        {
+          "word": "also",
+          "start": 114.06,
+          "end": 114.28
+        },
+        {
+          "word": "uses",
+          "start": 114.28,
+          "end": 114.58
+        }
+      ]
+    },
+    {
+      "start": 114.58,
+      "end": 118.92,
+      "text": "objects as an abstraction for data, allowing you to implement object-oriented patterns,",
+      "words": [
+        {
+          "word": "objects",
+          "start": 114.58,
+          "end": 115.02
+        },
+        {
+          "word": "as",
+          "start": 115.02,
+          "end": 115.32
+        },
+        {
+          "word": "an",
+          "start": 115.32,
+          "end": 115.44
+        },
+        {
+          "word": "abstraction",
+          "start": 115.44,
+          "end": 115.8
+        },
+        {
+          "word": "for",
+          "start": 115.8,
+          "end": 116.12
+        },
+        {
+          "word": "data,",
+          "start": 116.12,
+          "end": 116.42
+        },
+        {
+          "word": "allowing",
+          "start": 116.68,
+          "end": 116.94
+        },
+        {
+          "word": "you",
+          "start": 116.94,
+          "end": 117.12
+        },
+        {
+          "word": "to",
+          "start": 117.12,
+          "end": 117.26
+        },
+        {
+          "word": "implement",
+          "start": 117.26,
+          "end": 117.64
+        },
+        {
+          "word": "object",
+          "start": 117.64,
+          "end": 118.06
+        },
+        {
+          "word": "-oriented",
+          "start": 118.06,
+          "end": 118.46
+        },
+        {
+          "word": "patterns,",
+          "start": 118.46,
+          "end": 118.92
+        }
+      ]
+    },
+    {
+      "start": 119.2,
+      "end": 124.22,
+      "text": "with things like classes and inheritance. It also has a huge ecosystem of third-party libraries,",
+      "words": [
+        {
+          "word": "with",
+          "start": 119.2,
+          "end": 119.28
+        },
+        {
+          "word": "things",
+          "start": 119.28,
+          "end": 119.5
+        },
+        {
+          "word": "like",
+          "start": 119.5,
+          "end": 119.72
+        },
+        {
+          "word": "classes",
+          "start": 119.72,
+          "end": 120.14
+        },
+        {
+          "word": "and",
+          "start": 120.14,
+          "end": 120.44
+        },
+        {
+          "word": "inheritance.",
+          "start": 120.44,
+          "end": 120.86
+        },
+        {
+          "word": "It",
+          "start": 121.28,
+          "end": 121.36
+        },
+        {
+          "word": "also",
+          "start": 121.36,
+          "end": 121.66
+        },
+        {
+          "word": "has",
+          "start": 121.66,
+          "end": 121.88
+        },
+        {
+          "word": "a",
+          "start": 121.88,
+          "end": 122.02
+        },
+        {
+          "word": "huge",
+          "start": 122.02,
+          "end": 122.28
+        },
+        {
+          "word": "ecosystem",
+          "start": 122.28,
+          "end": 122.76
+        },
+        {
+          "word": "of",
+          "start": 122.76,
+          "end": 123.26
+        },
+        {
+          "word": "third",
+          "start": 123.26,
+          "end": 123.5
+        },
+        {
+          "word": "-party",
+          "start": 123.5,
+          "end": 123.74
+        },
+        {
+          "word": "libraries,",
+          "start": 123.74,
+          "end": 124.22
+        }
+      ]
+    },
+    {
+      "start": 124.46,
+      "end": 129.0,
+      "text": "such as deep learning frameworks like TensorFlow, and wrappers for many high-performance low-level",
+      "words": [
+        {
+          "word": "such",
+          "start": 124.46,
+          "end": 124.76
+        },
+        {
+          "word": "as",
+          "start": 124.76,
+          "end": 124.94
+        },
+        {
+          "word": "deep",
+          "start": 124.94,
+          "end": 125.16
+        },
+        {
+          "word": "learning",
+          "start": 125.16,
+          "end": 125.42
+        },
+        {
+          "word": "frameworks",
+          "start": 125.42,
+          "end": 125.84
+        },
+        {
+          "word": "like",
+          "start": 125.84,
+          "end": 126.12
+        },
+        {
+          "word": "TensorFlow,",
+          "start": 126.12,
+          "end": 126.46
+        },
+        {
+          "word": "and",
+          "start": 126.94,
+          "end": 127.04
+        },
+        {
+          "word": "wrappers",
+          "start": 127.04,
+          "end": 127.44
+        },
+        {
+          "word": "for",
+          "start": 127.44,
+          "end": 127.64
+        },
+        {
+          "word": "many",
+          "start": 127.64,
+          "end": 127.88
+        },
+        {
+          "word": "high",
+          "start": 127.88,
+          "end": 128.14
+        },
+        {
+          "word": "-performance",
+          "start": 128.14,
+          "end": 128.58
+        },
+        {
+          "word": "low",
+          "start": 128.58,
+          "end": 128.86
+        },
+        {
+          "word": "-level",
+          "start": 128.86,
+          "end": 129.0
+        }
+      ]
+    },
+    {
+      "start": 129.0,
+      "end": 134.06,
+      "text": "packages like Open Computer Vision, which are most often installed with the PIP package manager.",
+      "words": [
+        {
+          "word": "packages",
+          "start": 129.0,
+          "end": 129.46
+        },
+        {
+          "word": "like",
+          "start": 129.46,
+          "end": 129.86
+        },
+        {
+          "word": "Open",
+          "start": 129.86,
+          "end": 130.2
+        },
+        {
+          "word": "Computer",
+          "start": 130.2,
+          "end": 130.64
+        },
+        {
+          "word": "Vision,",
+          "start": 130.64,
+          "end": 131.0
+        },
+        {
+          "word": "which",
+          "start": 131.2,
+          "end": 131.34
+        },
+        {
+          "word": "are",
+          "start": 131.34,
+          "end": 131.44
+        },
+        {
+          "word": "most",
+          "start": 131.44,
+          "end": 131.58
+        },
+        {
+          "word": "often",
+          "start": 131.58,
+          "end": 131.9
+        },
+        {
+          "word": "installed",
+          "start": 131.9,
+          "end": 132.32
+        },
+        {
+          "word": "with",
+          "start": 132.32,
+          "end": 132.68
+        },
+        {
+          "word": "the",
+          "start": 132.68,
+          "end": 132.88
+        },
+        {
+          "word": "PIP",
+          "start": 132.88,
+          "end": 133.18
+        },
+        {
+          "word": "package",
+          "start": 133.18,
+          "end": 133.66
+        },
+        {
+          "word": "manager.",
+          "start": 133.66,
+          "end": 134.06
+        }
+      ]
+    },
+    {
+      "start": 134.06,
+      "end": 138.3,
+      "text": "This has been the Python programming language in 100 seconds. Hit the like button if you want to",
+      "words": [
+        {
+          "word": "This",
+          "start": 134.06,
+          "end": 134.4
+        },
+        {
+          "word": "has",
+          "start": 134.4,
+          "end": 134.6
+        },
+        {
+          "word": "been",
+          "start": 134.6,
+          "end": 134.72
+        },
+        {
+          "word": "the",
+          "start": 134.72,
+          "end": 134.84
+        },
+        {
+          "word": "Python",
+          "start": 134.84,
+          "end": 135.1
+        },
+        {
+          "word": "programming",
+          "start": 135.1,
+          "end": 135.62
+        },
+        {
+          "word": "language",
+          "start": 135.62,
+          "end": 136.02
+        },
+        {
+          "word": "in",
+          "start": 136.02,
+          "end": 136.32
+        },
+        {
+          "word": "100",
+          "start": 136.32,
+          "end": 136.72
+        },
+        {
+          "word": "seconds.",
+          "start": 136.72,
+          "end": 137.18
+        },
+        {
+          "word": "Hit",
+          "start": 137.34,
+          "end": 137.4
+        },
+        {
+          "word": "the",
+          "start": 137.4,
+          "end": 137.52
+        },
+        {
+          "word": "like",
+          "start": 137.52,
+          "end": 137.64
+        },
+        {
+          "word": "button",
+          "start": 137.64,
+          "end": 137.9
+        },
+        {
+          "word": "if",
+          "start": 137.9,
+          "end": 138.04
+        },
+        {
+          "word": "you",
+          "start": 138.04,
+          "end": 138.12
+        },
+        {
+          "word": "want",
+          "start": 138.12,
+          "end": 138.24
+        },
+        {
+          "word": "to",
+          "start": 138.24,
+          "end": 138.3
+        }
+      ]
+    },
+    {
+      "start": 138.3,
+      "end": 142.36,
+      "text": "see more short videos like this. Thanks for watching, and I will see you in the next one.",
+      "words": [
+        {
+          "word": "see",
+          "start": 138.3,
+          "end": 138.42
+        },
+        {
+          "word": "more",
+          "start": 138.42,
+          "end": 138.6
+        },
+        {
+          "word": "short",
+          "start": 138.6,
+          "end": 138.78
+        },
+        {
+          "word": "videos",
+          "start": 138.78,
+          "end": 139.06
+        },
+        {
+          "word": "like",
+          "start": 139.06,
+          "end": 139.32
+        },
+        {
+          "word": "this.",
+          "start": 139.32,
+          "end": 139.62
+        },
+        {
+          "word": "Thanks",
+          "start": 139.78,
+          "end": 139.96
+        },
+        {
+          "word": "for",
+          "start": 139.96,
+          "end": 140.1
+        },
+        {
+          "word": "watching,",
+          "start": 140.1,
+          "end": 140.48
+        },
+        {
+          "word": "and",
+          "start": 140.78,
+          "end": 140.94
+        },
+        {
+          "word": "I",
+          "start": 140.94,
+          "end": 141.1
+        },
+        {
+          "word": "will",
+          "start": 141.1,
+          "end": 141.24
+        },
+        {
+          "word": "see",
+          "start": 141.24,
+          "end": 141.5
+        },
+        {
+          "word": "you",
+          "start": 141.5,
+          "end": 141.68
+        },
+        {
+          "word": "in",
+          "start": 141.68,
+          "end": 141.84
+        },
+        {
+          "word": "the",
+          "start": 141.84,
+          "end": 141.94
+        },
+        {
+          "word": "next",
+          "start": 141.94,
+          "end": 142.16
+        },
+        {
+          "word": "one.",
+          "start": 142.16,
+          "end": 142.36
+        }
+      ]
+    }
+  ]
+}

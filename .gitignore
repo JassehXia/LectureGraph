@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Node
+node_modules/
+.next/
+out/
+build/
+.env.local
+
+# Project
+*.mp4
+*.json
+!metadata.json
