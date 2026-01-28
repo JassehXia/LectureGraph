@@ -22,28 +22,45 @@ from services.extraction import extract_concepts
 
 # ... (middleware stays same)
 
+from services.storage import download_from_r2
+from services.db import save_processing_results
+
 @app.post("/process-lecture")
 async def process_lecture(video_id: str, file_path: str):
     """
-    Triggers the transcription and extraction pipeline for a given video path.
+    Downloads from R2, transcribes, extracts concepts, and saves to DB.
     """
-    if not os.path.exists(file_path):
-        raise HTTPException(status_code=404, detail="File not found")
+    temp_dir = "temp"
+    if not os.path.exists(temp_dir):
+        os.makedirs(temp_dir)
+        
+    local_video_path = os.path.join(temp_dir, f"{video_id}.mp4")
 
     try:
-        # 1. Transcribe
-        metadata = transcribe_video(file_path)
+        # 1. Download
+        download_from_r2(file_path, local_video_path)
+
+        # 2. Transcribe
+        metadata = transcribe_video(local_video_path)
         
-        # 2. Extract Entities
-        concepts = extract_concepts(metadata["text"])
+        # 3. Extract Entities
+        concepts = extract_concepts(metadata["segments"])
         
+        # 4. Save to Database
+        save_processing_results(video_id, metadata["text"], concepts)
+        
+        # 5. Cleanup
+        if os.path.exists(local_video_path):
+            os.remove(local_video_path)
+
         return {
             "status": "success",
             "video_id": video_id,
-            "transcription": metadata,
-            "concepts": concepts
         }
     except Exception as e:
+        print(f"PIPELINE ERROR: {e}")
+        if os.path.exists(local_video_path):
+            os.remove(local_video_path)
         raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == "__main__":

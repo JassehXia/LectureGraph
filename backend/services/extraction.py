@@ -12,30 +12,35 @@ if not api_key:
 
 client = OpenAI(api_key=api_key)
 
-def extract_concepts(transcript_text: str) -> List[Dict]:
+def extract_concepts(segments: List[Dict]) -> List[Dict]:
     """
-    Uses an LLM to identify key concepts and their relationships from the transcript.
-    Returns a list of concept objects with names and relative importance.
+    Uses an LLM to identify key concepts from transcript segments.
+    Returns concepts mapped to the timestamp where they were first discussed.
     """
+    # Combine first 10 mins of transcript for overview extraction
+    # (In a larger app, we might do this in chunks)
+    full_text = " ".join([s['text'] for s in segments])
     
     prompt = f"""
-    Analyze the following lecture transcript and extract key technical concepts.
+    Analyze the following lecture transcript and extract the most important technical concepts.
     For each concept, provide:
     1. The name of the concept.
     2. A brief 1-sentence definition.
-    3. A list of "related concepts" mentioned in this context.
+    3. The EXACT phrase from the transcript that introduces this concept.
 
     Transcript:
-    \"\"\"{transcript_text}\"\"\"
+    \"\"\"{full_text[:6000]}\"\"\" 
 
-    Output format: JSON list of objects like:
-    [
-      {{
-        "name": "Concept Name",
-        "definition": "Brief definition",
-        "related": ["Related Concept 1", "Related Concept 2"]
-      }}
-    ]
+    Output format: JSON object with a "concepts" key:
+    {{
+      "concepts": [
+        {{
+          "name": "Concept Name",
+          "definition": "Brief definition",
+          "phrase": "exact introducing phrase"
+        }}
+      ]
+    }}
     """
 
     try:
@@ -45,12 +50,20 @@ def extract_concepts(transcript_text: str) -> List[Dict]:
             response_format={"type": "json_object"}
         )
         
-        # Note: GPT-4o json_object output usually needs to be keyed
-        result = json.loads(response.choices[0].message.content)
-        # If the LLM returns {"concepts": [...]}, handle that
-        if "concepts" in result:
-            return result["concepts"]
-        return result if isinstance(result, list) else [result]
+        raw_result = json.loads(response.choices[0].message.content)
+        extracted_concepts = raw_result.get("concepts", [])
+
+        # Map phrases back to timestamps
+        for concept in extracted_concepts:
+            phrase = concept.get("phrase", "").lower()
+            # Simple fuzzy match: find the first segment containing the phrase or most of it
+            concept["timestamp"] = 0.0
+            for s in segments:
+                if phrase in s['text'].lower():
+                    concept["timestamp"] = s['start']
+                    break
+        
+        return extracted_concepts
         
     except Exception as e:
         print(f"Error during extraction: {e}")

@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
+
+  // Back-reference for videos
+  videos Video[]
+}
+
+model Video {
+  id         String   @id @default(cuid())
+  title      String
+  r2Key      String   @unique
+  url        String
+  duration   Float?
+  transcript String?  @db.Text
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  userId Int?
+  user   User? @relation(fields: [userId], references: [id])
+
+  nodes Node[]
+}
+
+model Node {
+  id         String  @id @default(cuid())
+  label      String
+  definition String? @db.Text
+  timestamp  Float   @default(0) // Start time in seconds
+  videoId    String
+  video      Video   @relation(fields: [videoId], references: [id], onDelete: Cascade)
+
+  // Relationships for the graph
+  sourceEdges Edge[] @relation("SourceNode")
+  targetEdges Edge[] @relation("TargetNode")
+
+  createdAt DateTime @default(now())
+}
+
+model Edge {
+  id   String  @id @default(cuid())
+  type String? @default("related") // e.g., "prerequisite", "uses", "related"
+
+  sourceId String
+  source   Node   @relation("SourceNode", fields: [sourceId], references: [id], onDelete: Cascade)
+
+  targetId String
+  target   Node   @relation("TargetNode", fields: [targetId], references: [id], onDelete: Cascade)
+
+  @@unique([sourceId, targetId, type])
+}
