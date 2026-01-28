@@ -20,7 +20,13 @@ app.add_middleware(
 
 from services.extraction import extract_concepts
 
-# ... (middleware stays same)
+@app.get("/")
+async def root():
+    return {"message": "LectureGraph AI Backend is running"}
+
+@app.get("/health")
+async def health():
+    return {"status": "healthy"}
 
 from services.storage import download_from_r2
 from services.db import save_processing_results
@@ -58,7 +64,9 @@ async def process_lecture(video_id: str, file_path: str):
             "video_id": video_id,
         }
     except Exception as e:
+        import traceback
         print(f"PIPELINE ERROR: {e}")
+        traceback.print_exc()
         if os.path.exists(local_video_path):
             os.remove(local_video_path)
         raise HTTPException(status_code=500, detail=str(e))

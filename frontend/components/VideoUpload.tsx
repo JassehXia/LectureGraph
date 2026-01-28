@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 import { Upload, FileVideo, CheckCircle, XCircle, Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 import { cn } from "@/lib/utils";
 import { saveLecture } from "@/app/actions/lecture";
 
 export default function VideoUpload() {
+    const router = useRouter();
     const [file, setFile] = useState<File | null>(null);
     const [uploading, setUploading] = useState(false);
     const [progress, setProgress] = useState(0);
@@ -42,7 +44,7 @@ export default function VideoUpload() {
             console.log("Stage 2: Uploading to R2...");
             await axios.put(url, file, {
                 headers: { "Content-Type": file.type },
-                onUploadProgress: (progressEvent) => {
+                onUploadProgress: (progressEvent: any) => {
                     const percentCompleted = Math.round(
                         (progressEvent.loaded * 100) / (progressEvent.total || 1)
                     );
@@ -61,6 +63,10 @@ export default function VideoUpload() {
             if (result.success) {
                 console.log("Upload and save successful!");
                 setStatus("success");
+                // Redirect to the new lecture page
+                setTimeout(() => {
+                    router.push(`/lecture/${result.videoId}`);
+                }, 1500);
             } else {
                 console.error("Database save failed:", result.error);
                 setStatus("error");
