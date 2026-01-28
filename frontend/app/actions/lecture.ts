@@ -15,14 +15,15 @@ export async function saveLecture(data: {
             data: {
                 title: data.title,
                 r2Key: data.r2Key,
-                url: `${process.env.R2_PUBLIC_URL}/${data.r2Key}`, // You'll need this in .env
+                url: `${process.env.R2_PUBLIC_URL}/${encodeURIComponent(data.r2Key)}`,
             },
         });
 
         // 2. Trigger FastAPI Backend (Async)
         // We don't await the full processing here because it takes time
-        // But we trigger the request
-        fetch(`${BACKEND_URL}/process-lecture?video_id=${video.id}&file_path=${data.r2Key}`, {
+        // 2. Trigger AI processing (background)
+        const triggerUrl = `${BACKEND_URL}/process-lecture?video_id=${encodeURIComponent(video.id)}&file_path=${encodeURIComponent(data.r2Key)}`;
+        fetch(triggerUrl, {
             method: "POST",
         }).catch(err => console.error("Backend trigger failed:", err));
 

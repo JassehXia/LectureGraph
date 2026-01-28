@@ -48,6 +48,14 @@ export default function VideoPlayer({ src, onTimeUpdate, seekTime }: VideoPlayer
                 onTimeUpdate={handleTimeUpdate}
                 onPlay={() => setIsPlaying(true)}
                 onPause={() => setIsPlaying(false)}
+                onError={(e) => {
+                    const video = e.currentTarget;
+                    console.error("VIDEO PLAYER ERROR:", {
+                        code: video.error?.code,
+                        message: video.error?.message,
+                        src: src
+                    });
+                }}
             />
 
             {/* Custom Controls Overlay */}
