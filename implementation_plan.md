@@ -1,3 +1,7 @@
+.\venv\Scripts\python main.py to run the backend
+
+
+
 # LectureGraph Implementation Plan & Timeline
 
 LectureGraph is a multimodal learning platform that "unfolds" video lectures into interactive 2D knowledge graphs. This plan outlines a 5-iteration approach to build the MVP.

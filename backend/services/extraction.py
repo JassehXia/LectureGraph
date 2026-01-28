@@ -53,15 +53,32 @@ def extract_concepts(segments: List[Dict]) -> List[Dict]:
         raw_result = json.loads(response.choices[0].message.content)
         extracted_concepts = raw_result.get("concepts", [])
 
+        import re
+        def clean_text(t):
+            return re.sub(r'[^\w\s]', '', t.lower()).strip()
+
         # Map phrases back to timestamps
         for concept in extracted_concepts:
-            phrase = concept.get("phrase", "").lower()
-            # Simple fuzzy match: find the first segment containing the phrase or most of it
+            phrase = clean_text(concept.get("phrase", ""))
+            name = clean_text(concept.get("name", ""))
+            
             concept["timestamp"] = 0.0
+            found = False
+            
+            # Priority 1: Match the exact phrase
             for s in segments:
-                if phrase in s['text'].lower():
+                if phrase in clean_text(s['text']):
                     concept["timestamp"] = s['start']
+                    found = True
                     break
+            
+            # Priority 2: Match the concept name
+            if not found:
+                for s in segments:
+                    if name in clean_text(s['text']):
+                        concept["timestamp"] = s['start']
+                        found = True
+                        break
         
         return extracted_concepts
         
