@@ -1,24 +1,24 @@
 "use client";
 
 import { useState } from "react";
-import { Upload, FileVideo, CheckCircle, XCircle, Loader2 } from "lucide-react";
-import { useRouter } from "next/navigation";
 import axios from "axios";
+import { Upload, FileVideo, CheckCircle2, AlertCircle, Loader2, Plus, ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { saveLecture } from "@/app/actions/lecture";
+
+import { useRouter } from "next/navigation";
 
 export default function VideoUpload() {
     const router = useRouter();
     const [file, setFile] = useState<File | null>(null);
     const [uploading, setUploading] = useState(false);
-    const [progress, setProgress] = useState(0);
     const [status, setStatus] = useState<"idle" | "uploading" | "success" | "error">("idle");
+    const [progress, setProgress] = useState(0);
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
             setFile(e.target.files[0]);
             setStatus("idle");
-            setProgress(0);
         }
     };
 
@@ -27,56 +27,26 @@ export default function VideoUpload() {
 
         setUploading(true);
         setStatus("uploading");
-        setProgress(0);
+        const formData = new FormData();
+        formData.append("file", file);
 
         try {
-            // 1. Get presigned URL
-            console.log("Stage 1: Getting presigned URL...");
-            const { data } = await axios.post("/api/upload", {
-                filename: file.name,
-                contentType: file.type,
-            });
-
-            const { url, key } = data;
-            console.log("Presigned URL received:", url);
-
-            // 2. Upload to R2 directly
-            console.log("Stage 2: Uploading to R2...");
-            await axios.put(url, file, {
-                headers: { "Content-Type": file.type },
-                onUploadProgress: (progressEvent: any) => {
-                    const percentCompleted = Math.round(
-                        (progressEvent.loaded * 100) / (progressEvent.total || 1)
-                    );
+            const response = await axios.post("http://localhost:8000/process", formData, {
+                onUploadProgress: (progressEvent) => {
+                    const percentCompleted = Math.round((progressEvent.loaded * 100) / (progressEvent.total || 1));
                     setProgress(percentCompleted);
                 },
             });
-            console.log("R2 upload complete.");
 
-            // 3. Notify backend and save to DB
-            console.log("Stage 3: Saving to Database...");
-            const result = await saveLecture({
-                title: file.name,
-                r2Key: key,
-            });
+            const { id } = response.data;
+            setStatus("success");
 
-            if (result.success) {
-                console.log("Upload and save successful!");
-                setStatus("success");
-                // Redirect to the new lecture page
-                setTimeout(() => {
-                    router.push(`/lecture/${result.videoId}`);
-                }, 1500);
-            } else {
-                console.error("Database save failed:", result.error);
-                setStatus("error");
-            }
-        } catch (error: any) {
-            console.error("Critical upload error:", error);
-            if (error.response) {
-                console.error("Response data:", error.response.data);
-                console.error("Response status:", error.response.status);
-            }
+            // Short delay to show success state before redirect
+            setTimeout(() => {
+                router.push(`/lecture/${id}`);
+            }, 1500);
+        } catch (error) {
+            console.error(error);
             setStatus("error");
         } finally {
             setUploading(false);
@@ -84,84 +54,95 @@ export default function VideoUpload() {
     };
 
     return (
-        <div className="w-full max-w-xl mx-auto p-8 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl">
-            <div className="flex flex-col items-center gap-6">
-                <div className="w-20 h-20 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400">
-                    {status === "success" ? (
-                        <CheckCircle className="w-10 h-10" />
-                    ) : status === "error" ? (
-                        <XCircle className="w-10 h-10 text-red-400" />
+        <div className="w-full flex flex-col gap-6">
+            <label className={cn(
+                "w-full py-16 border-2 border-dashed rounded-[2rem] transition-all cursor-pointer group relative overflow-hidden",
+                file ? "border-blue-500/50 bg-blue-500/5" : "border-slate-800 hover:border-blue-500/30 hover:bg-slate-900/50"
+            )}>
+                <input type="file" className="hidden" accept="video/mp4" onChange={handleFileChange} disabled={uploading} />
+
+                <AnimatePresence mode="wait">
+                    {!file ? (
+                        <motion.div
+                            key="empty"
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            className="flex flex-col items-center gap-4 text-center px-10"
+                        >
+                            <div className="w-14 h-14 rounded-2xl bg-slate-900 border border-white/5 flex items-center justify-center group-hover:scale-110 transition-transform shadow-2xl">
+                                <Plus className="text-blue-500" />
+                            </div>
+                            <div>
+                                <h3 className="text-lg font-bold text-white mb-1">Upload Archive</h3>
+                                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Format: MP4 // MAX 500MB</p>
+                            </div>
+                        </motion.div>
                     ) : (
-                        <Upload className="w-10 h-10" />
+                        <motion.div
+                            key="file"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            className="flex flex-col items-center gap-4 text-center px-10"
+                        >
+                            <div className="w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/30">
+                                <FileVideo className="text-white" />
+                            </div>
+                            <div className="max-w-[240px]">
+                                <h3 className="text-sm font-bold text-white truncate mb-1">{file.name}</h3>
+                                <p className="text-[10px] font-bold text-blue-400 uppercase tracking-widest">Ready for analysis</p>
+                            </div>
+                        </motion.div>
                     )}
-                </div>
+                </AnimatePresence>
+            </label>
 
-                <div className="text-center">
-                    <h2 className="text-2xl font-bold text-white mb-2">Upload Lecture</h2>
-                    <p className="text-slate-400 text-sm">
-                        Drag and drop your MP4 files here, or click to browse
-                    </p>
-                </div>
-
-                <label className="w-full relative group cursor-pointer">
-                    <input
-                        type="file"
-                        className="hidden"
-                        accept="video/mp4"
-                        onChange={handleFileChange}
-                        disabled={uploading}
-                    />
-                    <div className={cn(
-                        "w-full py-12 border-2 border-dashed rounded-2xl transition-all duration-300 flex flex-col items-center gap-4",
-                        file ? "border-blue-500/50 bg-blue-500/5" : "border-white/10 hover:border-white/20 hover:bg-white/5"
-                    )}>
-                        {file ? (
-                            <>
-                                <FileVideo className="w-8 h-8 text-blue-400" />
-                                <span className="text-slate-200 font-medium">{file.name}</span>
-                                <span className="text-slate-500 text-xs">{(file.size / (1024 * 1024)).toFixed(2)} MB</span>
-                            </>
-                        ) : (
-                            <span className="text-slate-500">No file selected</span>
-                        )}
-                    </div>
-                </label>
-
-                {uploading && (
-                    <div className="w-full space-y-2">
-                        <div className="flex justify-between text-xs text-slate-400">
-                            <span>Uploading...</span>
-                            <span>{progress}%</span>
-                        </div>
-                        <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
-                            <div
-                                className="h-full bg-blue-500 transition-all duration-300 ease-out"
-                                style={{ width: `${progress}%` }}
-                            />
-                        </div>
-                    </div>
-                )}
-
+            <div className="flex flex-col gap-3">
                 <button
                     onClick={uploadVideo}
-                    disabled={!file || uploading}
+                    disabled={!file || uploading || status === "success"}
                     className={cn(
-                        "w-full py-4 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center gap-2",
-                        !file || uploading
-                            ? "bg-white/5 text-slate-500 cursor-not-allowed"
-                            : "bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-900/40"
+                        "w-full py-5 rounded-2xl font-bold text-xs tracking-[0.2em] uppercase transition-all flex items-center justify-center gap-3",
+                        !file || uploading || status === "success"
+                            ? "bg-slate-900 text-slate-600 cursor-not-allowed border border-white/5"
+                            : "bg-blue-600 text-white shadow-lg shadow-blue-600/20 hover:bg-blue-500"
                     )}
                 >
                     {uploading ? (
                         <>
-                            <Loader2 className="w-5 h-5 animate-spin" />
-                            Processing...
+                            <Loader2 className="animate-spin w-4 h-4" />
+                            <span>Processing Archive...</span>
+                        </>
+                    ) : status === "success" ? (
+                        <>
+                            <CheckCircle2 className="w-4 h-4" />
+                            <span>Analysis Complete</span>
                         </>
                     ) : (
-                        "Start Upload"
+                        <>
+                            <span>Construct Network</span>
+                            <ArrowRight className="w-4 h-4" />
+                        </>
                     )}
                 </button>
+
+                {uploading && (
+                    <div className="w-full h-1 bg-slate-900 rounded-full mt-2 overflow-hidden">
+                        <motion.div
+                            className="h-full bg-blue-500"
+                            initial={{ width: 0 }}
+                            animate={{ width: `${progress}%` }}
+                        />
+                    </div>
+                )}
             </div>
+
+            {status === "error" && (
+                <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 text-xs font-medium">
+                    <AlertCircle size={14} />
+                    <span>Failed to process archival stream. System error.</span>
+                </div>
+            )}
         </div>
     );
 }

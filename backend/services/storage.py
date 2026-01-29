@@ -26,3 +26,15 @@ def download_from_r2(key: str, local_path: str):
         print(f"DEBUG: Download FAILED: {e}")
         raise e
     return local_path
+
+def upload_to_r2(local_path: str, key: str):
+    bucket = "lecture-graph"
+    client = get_r2_client()
+    print(f"DEBUG: Uploading '{local_path}' to bucket='{bucket}' with key='{key}'")
+    try:
+        client.upload_file(local_path, bucket, key)
+        print("DEBUG: Upload successful.")
+        return True
+    except Exception as e:
+        print(f"DEBUG: Upload FAILED: {e}")
+        raise e

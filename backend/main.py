@@ -4,11 +4,11 @@ import os
 import logging
 from dotenv import load_dotenv
 
-# Set up logging
+# Set up logging to console only
 logging.basicConfig(
-    filename='pipeline.log',
-    level=logging.DEBUG,
-    format='%(asctime)s - %(levelname)s - %(message)s'
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[logging.StreamHandler()]
 )
 
 load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
@@ -36,6 +36,60 @@ async def root():
 @app.get("/health")
 async def health():
     return {"status": "healthy"}
+
+from services.storage import upload_to_r2
+from services.db import create_video_record
+import uuid
+
+@app.post("/process")
+async def upload_and_process(file: UploadFile = File(...)):
+    logging.info(f"RECEIVED UPLOAD: filename={file.filename}")
+    video_id = str(uuid.uuid4())
+    temp_dir = "temp"
+    if not os.path.exists(temp_dir):
+        os.makedirs(temp_dir)
+        
+    local_path = os.path.join(temp_dir, f"{video_id}_{file.filename}")
+    r2_key = f"uploads/{video_id}/{file.filename}"
+
+    try:
+        # 1. Save locally
+        with open(local_path, "wb") as buffer:
+            content = await file.read()
+            buffer.write(content)
+        
+        # 2. Upload to R2
+        logging.info("Step 1: Uploading to R2...")
+        upload_to_r2(local_path, r2_key)
+
+        # 3. Create initial record
+        logging.info("Step 2: Creating DB record...")
+        create_video_record(video_id, file.filename, r2_key)
+
+        # 4. Transcribe (already uses local path)
+        logging.info("Step 3: Transcribing...")
+        metadata = transcribe_video(local_path)
+        
+        # 5. Extract Entities & Relationships
+        logging.info("Step 4: Extracting concepts...")
+        graph_data = extract_concepts(metadata["segments"])
+        
+        # 6. Save results to DB
+        logging.info("Step 5: Updating DB with results...")
+        save_processing_results(video_id, metadata["text"], graph_data)
+        
+        # 7. Cleanup
+        if os.path.exists(local_path):
+            os.remove(local_path)
+
+        logging.info("UPLOAD & PROCESS COMPLETE")
+        return {"status": "success", "id": video_id}
+    except Exception as e:
+        import traceback
+        logging.error(f"UPLOAD & PROCESS ERROR: {traceback.format_exc()}")
+        if os.path.exists(local_path):
+            os.remove(local_path)
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/process-lecture")
 async def process_lecture(video_id: str, file_path: str):

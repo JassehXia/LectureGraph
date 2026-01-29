@@ -72,7 +72,7 @@ def save_processing_results(video_id: str, transcript: str, data: Dict):
             if source_id and target_id:
                 edge_id = str(uuid.uuid4())
                 cur.execute(
-                    "INSERT INTO \"Edge\" (id, sourceId, targetId, type) VALUES (%s, %s, %s, %s)",
+                    "INSERT INTO \"Edge\" (id, \"sourceId\", \"targetId\", type) VALUES (%s, %s, %s, %s)",
                     (edge_id, source_id, target_id, edge.get('type', 'related'))
                 )
         
@@ -81,6 +81,32 @@ def save_processing_results(video_id: str, transcript: str, data: Dict):
     except Exception as e:
         if 'conn' in locals(): conn.rollback()
         print(f"DEBUG: DB SAVE ERROR: {e}")
+        raise e
+    finally:
+        if 'cur' in locals(): cur.close()
+        if 'conn' in locals(): conn.close()
+
+def create_video_record(video_id: str, title: str, r2_key: str):
+    print(f"DEBUG: Creating video record id='{video_id}', title='{title}'...")
+    try:
+        conn = get_db_connection()
+        cur = conn.cursor()
+        
+        # INSERT into Video table
+        # We also set a dummy URL since the schema requires it
+        url = f"https://pub-34bc8f2e9d9449f69a86830caeb45256.r2.dev/{r2_key}"
+        
+        cur.execute(
+            "INSERT INTO \"Video\" (id, title, \"r2Key\", url, \"updatedAt\") VALUES (%s, %s, %s, %s, NOW())",
+            (video_id, title, r2_key, url)
+        )
+        
+        conn.commit()
+        print(f"DEBUG: Video record created successfully.")
+        return True
+    except Exception as e:
+        if 'conn' in locals(): conn.rollback()
+        print(f"DEBUG: VIDEO CREATION ERROR: {e}")
         raise e
     finally:
         if 'cur' in locals(): cur.close()

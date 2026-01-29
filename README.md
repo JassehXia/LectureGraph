@@ -54,6 +54,6 @@ Currently, LectureGraph is in its **Local Foundation** phase.
 ## 🗺️ Roadmap
 - [x] **Iteration 1**: Local transcription & concept extraction.
 - [x] **Iteration 2**: Cloudflare R2 integration & Next.js Upload UI.
-- [ ] **Iteration 3**: Interactive Video Player & Concept list.
-- [ ] **Iteration 4**: Knowledge Graph Visualization.
+- [x] **Iteration 3**: Interactive Video Player & Concept list.
+- [x] **Iteration 4**: Knowledge Graph Visualization.
 - [ ] **Iteration 5**: Full Deployment & Aesthetics.
