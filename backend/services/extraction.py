@@ -26,10 +26,11 @@ def extract_concepts(segments: List[Dict]) -> List[Dict]:
     For each concept, provide:
     1. The name of the concept.
     2. A brief 1-sentence definition.
-    3. The EXACT phrase from the transcript that introduces this concept.
+    3. THE EXACT WORDS used in the transcript to introduce or define this concept. 
+       This MUST be a direct quote so I can find it later.
 
     Transcript:
-    \"\"\"{full_text[:6000]}\"\"\" 
+    \"\"\"{full_text[:12000]}\"\"\" 
 
     Output format: JSON object with a "concepts" key:
     {{
@@ -37,7 +38,7 @@ def extract_concepts(segments: List[Dict]) -> List[Dict]:
         {{
           "name": "Concept Name",
           "definition": "Brief definition",
-          "phrase": "exact introducing phrase"
+          "phrase": "direct quote from transcript"
         }}
       ]
     }}
@@ -72,7 +73,17 @@ def extract_concepts(segments: List[Dict]) -> List[Dict]:
                     found = True
                     break
             
-            # Priority 2: Match the concept name
+            # Priority 2: Match the first 3 words of the phrase (more robust)
+            if not found:
+                first_few_words = " ".join(phrase.split()[:3])
+                if len(first_few_words) > 5:
+                    for s in segments:
+                        if first_few_words in clean_text(s['text']):
+                            concept["timestamp"] = s['start']
+                            found = True
+                            break
+
+            # Priority 3: Match the concept name
             if not found:
                 for s in segments:
                     if name in clean_text(s['text']):

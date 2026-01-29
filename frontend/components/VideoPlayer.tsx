@@ -39,6 +39,17 @@ export default function VideoPlayer({ src, onTimeUpdate, seekTime }: VideoPlayer
         }
     };
 
+    const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (videoRef.current) {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const clickedValue = (x / rect.width);
+            const newTime = clickedValue * videoRef.current.duration;
+            videoRef.current.currentTime = newTime;
+            setProgress(clickedValue * 100);
+        }
+    };
+
     return (
         <div className="relative group rounded-2xl overflow-hidden bg-black aspect-video shadow-2xl border border-white/10">
             <video
@@ -61,9 +72,12 @@ export default function VideoPlayer({ src, onTimeUpdate, seekTime }: VideoPlayer
             {/* Custom Controls Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                 {/* Progress Bar */}
-                <div className="w-full h-1 bg-white/20 rounded-full mb-6 cursor-pointer overflow-hidden">
+                <div
+                    className="w-full h-2 bg-white/20 rounded-full mb-6 cursor-pointer overflow-hidden hover:h-3 transition-all"
+                    onClick={handleSeek}
+                >
                     <div
-                        className="h-full bg-blue-500 transition-all duration-100"
+                        className="h-full bg-blue-500 transition-all duration-100 pointer-events-none"
                         style={{ width: `${progress}%` }}
                     />
                 </div>

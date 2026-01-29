@@ -79,4 +79,5 @@ async def process_lecture(video_id: str, file_path: str):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    # reload=True works when you pass the app as a string "filename:appname"
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
