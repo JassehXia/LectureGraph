@@ -60,7 +60,11 @@ export default function KnowledgeGraph({ nodes, edges, activeTime, onNodeClick }
         linkColor={() => "rgba(255, 255, 255, 0.1)"}
         linkDirectionalArrowLength={3.5}
         linkDirectionalArrowRelPos={1}
-        onNodeClick={(node: NodeObject) => onNodeClick(node.timestamp as number)}
+        onNodeClick={(node: any) => {
+          onNodeClick(node.timestamp as number);
+        }}
+        cooldownTime={3000}
+        d3AlphaDecay={0.05}
         backgroundColor="rgba(0,0,0,0)"
         nodeCanvasObject={(node: any, ctx, globalScale) => {
           const label = node.label;

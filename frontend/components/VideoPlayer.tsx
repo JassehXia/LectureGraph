@@ -40,7 +40,7 @@ export default function VideoPlayer({ src, onTimeUpdate, seekTime }: VideoPlayer
     };
 
     const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (videoRef.current) {
+        if (videoRef.current && videoRef.current.duration) {
             const rect = e.currentTarget.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const clickedValue = (x / rect.width);
@@ -55,10 +55,12 @@ export default function VideoPlayer({ src, onTimeUpdate, seekTime }: VideoPlayer
             <video
                 ref={videoRef}
                 src={src}
-                className="w-full h-full"
+                className="w-full h-full cursor-pointer"
+                onClick={togglePlay}
                 onTimeUpdate={handleTimeUpdate}
                 onPlay={() => setIsPlaying(true)}
                 onPause={() => setIsPlaying(false)}
+                onLoadedMetadata={handleTimeUpdate}
                 onError={(e) => {
                     const video = e.currentTarget;
                     console.error("VIDEO PLAYER ERROR:", {
@@ -70,16 +72,18 @@ export default function VideoPlayer({ src, onTimeUpdate, seekTime }: VideoPlayer
             />
 
             {/* Custom Controls Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                {/* Progress Bar */}
+            <div className={`absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent transition-opacity duration-300 flex flex-col justify-end p-6 ${isPlaying ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'}`}>
+                {/* Progress Bar Container (to make it easier to click) */}
                 <div
-                    className="w-full h-2 bg-white/20 rounded-full mb-6 cursor-pointer overflow-hidden hover:h-3 transition-all"
+                    className="w-full h-4 -mb-2 flex items-center cursor-pointer group/progress"
                     onClick={handleSeek}
                 >
-                    <div
-                        className="h-full bg-blue-500 transition-all duration-100 pointer-events-none"
-                        style={{ width: `${progress}%` }}
-                    />
+                    <div className="w-full h-1.5 bg-white/20 rounded-full overflow-hidden group-hover/progress:h-2 transition-all">
+                        <div
+                            className="h-full bg-blue-500 transition-all duration-100 pointer-events-none"
+                            style={{ width: `${progress}%` }}
+                        />
+                    </div>
                 </div>
 
                 <div className="flex items-center justify-between">

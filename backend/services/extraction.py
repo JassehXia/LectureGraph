@@ -22,23 +22,32 @@ def extract_concepts(segments: List[Dict]) -> List[Dict]:
     full_text = " ".join([s['text'] for s in segments])
     
     prompt = f"""
-    Analyze the following lecture transcript and extract the most important technical concepts.
+    Analyze the following lecture transcript and extract the most important technical concepts AND their relationships.
     For each concept, provide:
     1. The name of the concept.
     2. A brief 1-sentence definition.
     3. THE EXACT WORDS used in the transcript to introduce or define this concept. 
        This MUST be a direct quote so I can find it later.
 
+    Also, identify relationships between these concepts (e.g., if one is a prerequisite for another, or if they are closely related).
+
     Transcript:
     \"\"\"{full_text[:12000]}\"\"\" 
 
-    Output format: JSON object with a "concepts" key:
+    Output format: JSON object with "concepts" and "edges" keys:
     {{
       "concepts": [
         {{
           "name": "Concept Name",
           "definition": "Brief definition",
           "phrase": "direct quote from transcript"
+        }}
+      ],
+      "edges": [
+        {{
+          "source": "Concept Name A",
+          "target": "Concept Name B",
+          "type": "prerequisite" | "related" | "uses"
         }}
       ]
     }}
@@ -53,6 +62,7 @@ def extract_concepts(segments: List[Dict]) -> List[Dict]:
         
         raw_result = json.loads(response.choices[0].message.content)
         extracted_concepts = raw_result.get("concepts", [])
+        extracted_edges = raw_result.get("edges", [])
 
         import re
         def clean_text(t):
@@ -91,11 +101,14 @@ def extract_concepts(segments: List[Dict]) -> List[Dict]:
                         found = True
                         break
         
-        return extracted_concepts
+        return {
+            "concepts": extracted_concepts,
+            "edges": extracted_edges
+        }
         
     except Exception as e:
         print(f"Error during extraction: {e}")
-        return []
+        return {"concepts": [], "edges": []}
 
 if __name__ == "__main__":
     # Test stub

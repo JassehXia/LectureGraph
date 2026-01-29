@@ -1,20 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import dynamic from "next/dynamic";
+import { useState, useMemo } from "react";
 import VideoPlayer from "@/components/VideoPlayer";
 import ConceptList from "@/components/ConceptList";
-import { ArrowLeft, Share2, Info } from "lucide-react";
+const KnowledgeGraph = dynamic(() => import("@/components/KnowledgeGraph"), { ssr: false });
+import { ArrowLeft, Share2, Info, List as ListIcon, Share2 as GraphIcon } from "lucide-react";
 import Link from "next/link";
 
 export default function LectureViewClient({ lecture }: { lecture: any }) {
     const [activeTime, setActiveTime] = useState(0);
     const [seekTime, setSeekTime] = useState<number | undefined>(undefined);
+    const [viewMode, setViewMode] = useState<"list" | "graph">("graph");
 
     const handleConceptClick = (timestamp: number) => {
         setSeekTime(timestamp);
         // Reset seekTime immediately so subsequent clicks to same time still trigger
         setTimeout(() => setSeekTime(undefined), 100);
     };
+
+    // Prepare edges from DB for the graph - MEMOIZED to prevent graph restarts
+    const edges = useMemo(() => {
+        return lecture.nodes?.flatMap((node: any) =>
+            node.sourceEdges?.map((edge: any) => ({
+                source: edge.sourceId,
+                target: edge.targetId,
+                type: edge.type
+            }))
+        ).filter(Boolean) || [];
+    }, [lecture.nodes]);
 
     return (
         <div className="flex flex-col h-screen overflow-hidden">
@@ -37,6 +51,22 @@ export default function LectureViewClient({ lecture }: { lecture: any }) {
                 </div>
 
                 <div className="flex items-center gap-2">
+                    <div className="flex bg-white/5 border border-white/10 rounded-xl p-1 mr-4">
+                        <button
+                            onClick={() => setViewMode("list")}
+                            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-2 ${viewMode === 'list' ? 'bg-white/10 text-white shadow-lg' : 'text-slate-400 hover:text-slate-200'}`}
+                        >
+                            <ListIcon className="w-3.5 h-3.5" />
+                            Index
+                        </button>
+                        <button
+                            onClick={() => setViewMode("graph")}
+                            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-2 ${viewMode === 'graph' ? 'bg-white/10 text-white shadow-lg' : 'text-slate-400 hover:text-slate-200'}`}
+                        >
+                            <GraphIcon className="w-3.5 h-3.5" />
+                            Graph
+                        </button>
+                    </div>
                     <button className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-sm font-medium hover:bg-white/10 transition-colors">
                         <Share2 className="w-4 h-4" />
                         Share Graph
@@ -68,13 +98,24 @@ export default function LectureViewClient({ lecture }: { lecture: any }) {
                     </div>
                 </div>
 
-                {/* Right Side: Concept List */}
-                <div className="w-[400px] shrink-0">
-                    <ConceptList
-                        concepts={lecture.nodes || []}
-                        activeTime={activeTime}
-                        onConceptClick={handleConceptClick}
-                    />
+                {/* Right Side: Tabbed Sidebar */}
+                <div className="w-[500px] shrink-0 flex flex-col gap-4">
+                    <div className="flex-1 bg-black/40 rounded-3xl border border-white/5 overflow-hidden">
+                        {viewMode === "list" ? (
+                            <ConceptList
+                                concepts={lecture.nodes || []}
+                                activeTime={activeTime}
+                                onConceptClick={handleConceptClick}
+                            />
+                        ) : (
+                            <KnowledgeGraph
+                                nodes={lecture.nodes || []}
+                                edges={edges}
+                                activeTime={activeTime}
+                                onNodeClick={handleConceptClick}
+                            />
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

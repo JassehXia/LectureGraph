@@ -22,17 +22,22 @@ def convert_numpy_to_python(obj):
         return [convert_numpy_to_python(i) for i in obj]
     return obj
 
-def save_processing_results(video_id: str, transcript: str, concepts: List[Dict]):
+def save_processing_results(video_id: str, transcript: str, data: Dict):
+    concepts = data.get("concepts", [])
+    edges = data.get("edges", [])
+    
     print(f"DEBUG: Saving results for video_id='{video_id}'...")
     print(f"DEBUG: Transcript length: {len(transcript)}")
     
-    # Force conversion of all concepts to native Python types
+    # Force conversion to native Python types
     try:
         concepts = convert_numpy_to_python(concepts)
+        edges = convert_numpy_to_python(edges)
     except ImportError:
-        pass # Numpy not installed, proceed anyway
+        pass 
     
     print(f"DEBUG: Concepts count: {len(concepts)}")
+    print(f"DEBUG: Edges count: {len(edges)}")
     
     try:
         conn = get_db_connection()
@@ -40,23 +45,36 @@ def save_processing_results(video_id: str, transcript: str, concepts: List[Dict]
         print("DEBUG: DB Connection successful.")
         
         # 1. Update Video metadata
-        print("DEBUG: Updating Video transcript...")
         cur.execute(
             "UPDATE \"Video\" SET transcript = %s WHERE id = %s",
             (transcript, video_id)
         )
         
+        # Mapping to keep track of node IDs for edge creation
+        name_to_id = {}
+
         # 2. Insert Concepts (Nodes)
-        print(f"DEBUG: Inserting {len(concepts)} nodes...")
         for concept in concepts:
-            # We'll use a simple random string if gen_random_uuid fails, 
-            # but let's try a standard UUID from python first to be safe
             import uuid
             node_id = str(uuid.uuid4())
+            name_to_id[concept['name'].lower()] = node_id
             cur.execute(
                 "INSERT INTO \"Node\" (id, label, definition, \"videoId\", timestamp) VALUES (%s, %s, %s, %s, %s)",
                 (node_id, concept['name'], concept['definition'], video_id, float(concept['timestamp']))
             )
+            
+        # 3. Insert Edges
+        print(f"DEBUG: Inserting {len(edges)} edges...")
+        for edge in edges:
+            source_id = name_to_id.get(edge['source'].lower())
+            target_id = name_to_id.get(edge['target'].lower())
+            
+            if source_id and target_id:
+                edge_id = str(uuid.uuid4())
+                cur.execute(
+                    "INSERT INTO \"Edge\" (id, sourceId, targetId, type) VALUES (%s, %s, %s, %s)",
+                    (edge_id, source_id, target_id, edge.get('type', 'related'))
+                )
         
         conn.commit()
         print(f"DEBUG: DB Commit successful for video {video_id}")

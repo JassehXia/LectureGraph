@@ -7,7 +7,11 @@ export default async function LecturePage({ params }: { params: Promise<{ id: st
     const lecture = await db.video.findUnique({
         where: { id: id },
         include: {
-            nodes: true,
+            nodes: {
+                include: {
+                    sourceEdges: true
+                }
+            },
         },
     });
 

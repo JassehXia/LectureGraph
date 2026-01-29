@@ -55,13 +55,13 @@ async def process_lecture(video_id: str, file_path: str):
         logging.info("Step 2: Transcribing...")
         metadata = transcribe_video(local_video_path)
         
-        # 3. Extract Entities
-        logging.info("Step 3: Extracting concepts...")
-        concepts = extract_concepts(metadata["segments"])
+        # 3. Extract Entities & Relationships
+        logging.info("Step 3: Extracting concepts and edges...")
+        graph_data = extract_concepts(metadata["segments"])
         
         # 4. Save to Database
         logging.info("Step 4: Saving to DB...")
-        save_processing_results(video_id, metadata["text"], concepts)
+        save_processing_results(video_id, metadata["text"], graph_data)
         
         # 5. Cleanup
         if os.path.exists(local_video_path):
