@@ -12,7 +12,7 @@ interface Node {
 interface Edge {
   source: string;
   target: string;
-  type?: string;
+  type?: string | null;
 }
 
 interface KnowledgeGraphProps {

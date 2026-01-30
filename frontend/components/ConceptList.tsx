@@ -8,7 +8,7 @@ import { useState } from "react";
 interface Node {
     id: string;
     label: string;
-    definition: string;
+    definition: string | null;
     timestamp: number;
 }
 
@@ -23,7 +23,7 @@ export default function ConceptList({ concepts, activeTime, onConceptClick }: Co
 
     const filteredConcepts = concepts.filter(c =>
         c.label.toLowerCase().includes(search.toLowerCase()) ||
-        c.definition.toLowerCase().includes(search.toLowerCase())
+        (c.definition?.toLowerCase().includes(search.toLowerCase()) ?? false)
     ).sort((a, b) => a.timestamp - b.timestamp);
 
     const activeIndex = concepts.findIndex((c, i) => {

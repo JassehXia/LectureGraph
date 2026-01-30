@@ -17,7 +17,7 @@ const KnowledgeGraph = dynamic(() => import("@/components/KnowledgeGraph"), {
 interface Node {
     id: string;
     label: string;
-    definition: string;
+    definition: string | null;
     timestamp: number;
 }
 
@@ -25,14 +25,14 @@ interface Edge {
     id: string;
     sourceId: string;
     targetId: string;
-    type: string;
+    type: string | null;
 }
 
 interface Lecture {
     id: string;
     title: string;
     r2Key: string;
-    transcript?: string;
+    transcript?: string | null;
     nodes?: Node[];
     edges?: Edge[];
 }
